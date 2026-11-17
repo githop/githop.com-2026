@@ -1,0 +1,141 @@
+/* Landing page (/). Inlined into index.html at build time. */
+.home {
+  /* Read by src/client/terrain.ts to time layer removal. */
+  --topo-fade: 1200ms;
+
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home {
+    --topo-fade: 0ms;
+  }
+}
+
+/* Topographic background. Class names are defined by TOPO_CLASSES in
+   src/lib/topo-core.ts; the build fails if any are missing here. */
+.topo {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Softly recesses contours behind the hero copy regardless of terrain seed. */
+.topo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 50% at 28% 50%,
+    color-mix(in srgb, var(--bg) 65%, transparent),
+    transparent 100%
+  );
+}
+
+.topo-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--topo-fade) ease;
+}
+
+.topo-layer.is-visible {
+  opacity: 1;
+}
+
+.topo-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.topo-minor {
+  color: var(--topo-minor);
+  stroke-width: 1;
+}
+
+.topo-major {
+  color: var(--topo-major);
+  stroke-width: 1.75;
+}
+
+/* Content */
+.home main {
+  align-self: center;
+  padding: 2rem clamp(1.5rem, 8vw, 6rem);
+  max-width: 42rem;
+}
+
+.home h1 {
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 650;
+  line-height: 1.08;
+  margin: 0 0 0.625rem;
+  letter-spacing: -0.025em;
+}
+
+.home p {
+  color: var(--fg-muted);
+  font-size: 1.0625rem;
+  margin: 0 0 1.625rem;
+}
+
+.home nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font: 0.875rem/1.4 var(--font-mono);
+}
+
+.home nav a {
+  text-underline-offset: 0.3em;
+}
+
+.home footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem clamp(1.5rem, 8vw, 6rem) 1.25rem;
+  color: var(--fg-subtle);
+  font: 0.8125rem/1 var(--font-mono);
+}
+
+.home footer output {
+  color: var(--accent-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.home button {
+  font: inherit;
+  color: var(--fg-dim);
+  background: color-mix(in srgb, var(--bg-deep) 78%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.5rem 0.875rem;
+  cursor: pointer;
+  transition:
+    color 140ms ease,
+    background-color 140ms ease,
+    border-color 140ms ease;
+}
+
+.home button:hover:not(:disabled) {
+  color: var(--fg-bright);
+  background: var(--bg-elevated);
+  border-color: var(--accent);
+}
+
+.home button:active:not(:disabled) {
+  transform: translateY(0.5px);
+}
+
+.home button:disabled {
+  opacity: 0.45;
+  cursor: progress;
+}

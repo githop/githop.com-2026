@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" data-theme="dragon">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>githop</title>
+    <meta name="description" content="githop — software engineer." />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#181616" />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="alternate"
+      type="text/markdown"
+      href="/resume?format=md"
+      title="Résumé (Markdown)"
+    />
+    <!--styles:home-->
+    <script type="module" src="/src/client/main.ts"></script>
+  </head>
+  <body class="home">
+    <div id="topo" class="topo" aria-hidden="true"><!--topo:layer--></div>
+    <main>
+      <h1>Tom Hopkins</h1>
+      <p>
+        Programmer and outdoor enthusiast. I live and work in sunny Boulder
+        Colorado.
+      </p>
+      <nav aria-label="Primary">
+        <a href="/resume">Resume</a>
+        <a href="/resume?format=md">resume.md</a>
+        <a href="https://github.com/githop" rel="me">GitHub</a>
+      </nav>
+    </main>
+    <footer>
+      <button id="new-terrain" type="button" disabled>New terrain</button>
+      <span
+        >seed <output id="topo-seed"><!--topo:seed--></output></span
+      >
+    </footer>
+  </body>
+</html>
