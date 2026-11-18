@@ -33,7 +33,8 @@ const ResumePage = ({ title, body }: { title: string; body: string }) => (
         <title>{`${title} — Résumé`}</title>
         <meta name="color-scheme" content="dark light" />
         <meta name="theme-color" content="#181616" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="alternate" type="text/markdown" href="/resume?format=md" />
         <script>{raw(THEME_SCRIPT)}</script>
         <style>{raw(RESUME_CSS)}</style>
