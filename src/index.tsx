@@ -6,6 +6,7 @@ import {
   raw as resumeMd,
   title,
 } from "./content/resume.md";
+import { mountResumeCopy } from "./client/resume";
 import { prefersMarkdown } from "./lib/negotiate";
 import themeCss from "./styles/theme.css?inline";
 import baseCss from "./styles/base.css?inline";
@@ -13,9 +14,12 @@ import resumeCss from "./styles/resume.css?inline";
 
 const resumeTitle = title || "Resume";
 
-const CACHE_CONTROL = "public, max-age=300, s-maxage=3600";
+const CACHE_CONTROL = import.meta.env.DEV
+  ? "no-store"
+  : "public, max-age=300, s-maxage=3600";
 
 const RESUME_CSS = themeCss + baseCss + resumeCss;
+const COPY_MD_SCRIPT = `(${mountResumeCopy.toString()})();`;
 
 const ResumePage = ({ title, body }: { title: string; body: string }) => (
   <>
@@ -35,10 +39,22 @@ const ResumePage = ({ title, body }: { title: string; body: string }) => (
         <div class="page">
           <nav class="toolbar" aria-label="Résumé">
             <a href="/">← githop.com</a>
-            <a href="/resume?format=md">Markdown</a>
+            <button id="copy-md" class="copy-md" type="button">
+              <span class="copy-label">Copy Markdown</span>
+              <span class="copy-done" aria-hidden="true">
+                ✓ Copied
+              </span>
+            </button>
           </nav>
+          <span
+            id="copy-status"
+            class="sr-only"
+            role="status"
+            aria-live="polite"
+          />
           <article>{raw(body)}</article>
         </div>
+        <script>{raw(COPY_MD_SCRIPT)}</script>
       </body>
     </html>
   </>

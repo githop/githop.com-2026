@@ -14,8 +14,8 @@ Full Stack \- AI Assisted Engineer \- System Design \- Front End Architecture \-
 
 # Experience
 
-| Senior Software Engineer II | Semgrep Denver, Colorado | May 2026 \- Aug 2026 |
-| :-------------------------- | :----------------------- | :------------------: |
+| Senior Software Engineer II | Semgrep _Denver, Colorado_ | May 2026 \- Aug 2026 |
+| :-------------------------- | :------------------------- | :------------------: |
 
 - Senior engineer on the Scan Services team within the Scan Platform group.
 - The Scan Platform maintains Semgrep’s internal Kubernetes cluster where customer scans execute, while the Scan Services team ensures scan results are searchable in near real-time upon completion. To achieve low-latency eventual consistency without dual-write overhead, we implemented a log-based Change Data Capture (CDC) pipeline; streaming PostgreSQL WAL events through Kafka to index results into OpenSearch.
@@ -24,16 +24,16 @@ Full Stack \- AI Assisted Engineer \- System Design \- Front End Architecture \-
 - Present lightning talks / demos to wider engineering organization to communicate our wins and progress
 - Contributed migration design docs and implementation plan for high level data model overhaul for running scans.
 
-| Senior Software Engineer II | Guild Denver, Colorado | Dec 2020 \- May 2025 |
-| :-------------------------- | :--------------------- | :------------------: |
+| Senior Software Engineer II | Guild _Denver, Colorado_ | Dec 2020 \- May 2025 |
+| :-------------------------- | :----------------------- | :------------------: |
 
 - Senior engineer in the Payments pillar across several product teams (Sponsorship, Tuition Assistance, Determination Processing), with varying tech stacks (Ruby on Rails on Amazon Elastic Kubernetes Service, React, Typescript, Node JS, AWS Lambda, Aws SQS, AWS Fargate, AWS Batch, AWS SAM/CDK, Postgres on AWS RDS, Python, GraphQL)
 - Key senior engineer on a cross functional team that shipped the “Member Level Billing” product: an event driven suite of microservices on AWS (node, typescript) and a react UI responsible for processing \>1B dollars of financial transactions annually. Lead front end architecture and development, collaborated on graphql schema and backend serverless application architecture (AWS Lambda / AWS Batch, AWS SQS, GraphQL), data model, and development.
 - Lead engineer on several cross functional product initiatives (AIS Payment integration, Deferred Tuition, CDK / Node migration, SOC2 / WCAG 2.1 compliance) which successfully shipped new features and products. These efforts required collaborating with several teams across Guild, delivering clear communication backed by an Architectural Design Record (ADR) documenting the engineering effort, implementation plan, scope of impact, key stakeholders and decision makers.
 - Contributed to internal culture by giving lightning talks at division all hands, contributing PRs to other codebases on other teams, mentored teammates, participated in hackathons, interviewed candidates, and developed AI assisted workflows, tools, and best practices for my team.
 
-| Software Engineer | Blinker Denver, Colorado | June 2020 \- Dec 2020 |
-| :---------------- | :----------------------- | :-------------------: |
+| Software Engineer | Blinker _Denver, Colorado_ | June 2020 \- Dec 2020 |
+| :---------------- | :------------------------- | :-------------------: |
 
 - Implemented code generation pipeline for use with Typescript, React and Apollo client, increased developer velocity with faster workflows.
 - Architected and implemented Front end authentication and authorization for Blinker’s new market place SPA for both Production and developer environments
@@ -41,8 +41,8 @@ Full Stack \- AI Assisted Engineer \- System Design \- Front End Architecture \-
 - Pair and mentor junior team members.
 - Interview and assess technical skills for prospective candidates in a variety of languages including Typescript, Javascript, Python, Elixir and Ruby.
 
-| Software Engineer | Avero Boulder, Colorado | Feb 2018 \- March 2020 |
-| :---------------- | :---------------------- | :--------------------: |
+| Software Engineer | Avero _Boulder, Colorado_ | Feb 2018 \- March 2020 |
+| :---------------- | :------------------------ | :--------------------: |
 
 - Avero engineering uses a microservice architecture with several tiers: a gRCP / protocol buffer based service layer (Java, Node), a BFF layer now using GraphQL with Apollo, and a front end stack including React and React Native for iOS and Android. Avero typically has small agile teams consisting of 4 or more engineers, 1 QA and 1 PM.
 - A member of the Expo team responsible for creating new versions of the company’s most popular product: Avero Logbook, a log based productivity application, and delivered to customers new Android and iOS apps and a new desktop web experience using React and React Native.
@@ -54,23 +54,23 @@ Full Stack \- AI Assisted Engineer \- System Design \- Front End Architecture \-
 - Emphasis on type safety across architecture layers via static type generation for Typescript Node servers and React clients written in Typescript.
 - Automated developer tasks via custom tooling and CLI applications.
 
-| Front End Engineer | In the Telling Boulder, Colorado | Nov 2015 \- Feb 2018 |
-| :----------------- | :------------------------------- | :------------------: |
+| Front End Engineer | In the Telling _Boulder, Colorado_ | Nov 2015 \- Feb 2018 |
+| :----------------- | :--------------------------------- | :------------------: |
 
 - Designed, implemented, and tested new features for Angular JS client app and Rails API server with MongoDB.
 - Refactored Grunt based tooling to use webpack to allow for use of typescript within the codebase.
 - Built internal tools for development team to facilitate testing, release and development (version control / release management / doc generation, source code / template generation, perf / stress testing and optimization)
 - Collaborate with non-technical team members outside of agile team for product development (film editors, marketing / sales team)
 
-| Full Stack Developer | Briebug Solutions Lakewood, Colorado | Sept 2015 |
-| :------------------- | :----------------------------------- | :-------: |
+| Full Stack Developer | Briebug Solutions _Lakewood, Colorado_ | Sept 2015 \- Sept 2015 |
+| :------------------- | :------------------------------------- | :--------------------: |
 
 - One month contract as consultant
 - Implemented data visualizations Briebug’s international client’s Angular JS / PHP application.
 - Toolchain includes NodeJS, AngularJS, Gulp, Karma/Mocha, MongoDB, PHP, MEAN stack, TDD
 
-| Software Engineer | TrainHeroic Boulder, Colorado | Dec 2014 \- June 2015 |
-| :---------------- | :---------------------------- | :-------------------: |
+| Software Engineer | TrainHeroic _Boulder, Colorado_ | Dec 2014 \- June 2015 |
+| :---------------- | :------------------------------ | :-------------------: |
 
 - Contribute to day to day development on an agile team.
 - Designed, developed, implemented gulp based build and optimization process for angular app.
@@ -78,11 +78,6 @@ Full Stack \- AI Assisted Engineer \- System Design \- Front End Architecture \-
 - Implemented automated build process in TeamCity
 - Developed protractor testing plan for angular client apps.
 - Led team discussion and adoption of internal style guide.
-
-| Software Engineer | Independent Contractor | Aug \- Dec 2014 |
-| :---------------- | :--------------------- | :-------------: |
-
-- Worked on contract basis developing custom software for small businesses in the Boulder area
 
 # Education
 
