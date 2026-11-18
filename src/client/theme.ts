@@ -20,15 +20,30 @@ export function initTheme(): void {
         ? "lotus"
         : "dragon";
 
+  const syncIcon = (theme: Theme): void => {
+    const icon = document.querySelector<HTMLLinkElement>(
+      'link[rel="icon"][type="image/svg+xml"]',
+    );
+    if (!icon) return;
+    const next = icon.cloneNode() as HTMLLinkElement;
+    next.href = `/favicon-${theme}.svg`;
+    icon.replaceWith(next);
+  };
+
   const apply = (theme: Theme): void => {
     root.dataset.theme = theme;
     const meta = document.querySelector<HTMLMetaElement>(
       'meta[name="theme-color"]',
     );
     if (meta) meta.content = COLORS[theme];
+    syncIcon(theme);
   };
 
   apply(initial);
+  window.addEventListener("pageshow", () => {
+    const current = root.dataset.theme === "lotus" ? "lotus" : "dragon";
+    syncIcon(current);
+  });
 
   document.addEventListener("click", (e) => {
     if (!(e.target as Element | null)?.closest?.("[data-theme-toggle]")) return;
