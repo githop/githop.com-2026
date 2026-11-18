@@ -1,14 +1,14 @@
 /*
  * Two-tier theme architecture modeled after rebelot/kanagawa.nvim:
- *   1. Palette primitives (--palette-*) — raw hex colors from Kanagawa.
+ *   1. Palette primitives (--palette-*) — raw hex colors from Kanagawa Dragon & Lotus.
  *   2. Semantic theme tokens — UI surfaces, foreground hierarchy, borders,
- *      and a 3-color accent triad consumed by base.css and page stylesheets.
+ *      and a unified 3-color accent triad consumed by base.css and page stylesheets.
  *
  * Components and pages reference only semantic tokens, never palette hex values.
  */
 
 :root {
-  /* Kanagawa Dragon backgrounds & neutrals */
+  /* Kanagawa Dragon (dark) */
   --palette-dragon-black-0: #0d0c0c;
   --palette-dragon-black-1: #12120f;
   --palette-dragon-black-2: #1d1c19;
@@ -16,58 +16,44 @@
   --palette-dragon-black-4: #282727;
   --palette-dragon-black-5: #393836;
   --palette-dragon-black-6: #625e5a;
-
   --palette-dragon-white: #c5c9c5;
-  --palette-old-white: #c8c093;
   --palette-fuji-white: #dcd7ba;
-
   --palette-dragon-gray: #a6a69c;
   --palette-dragon-gray-2: #9e9b93;
-  --palette-dragon-gray-3: #7a8382;
   --palette-dragon-ash: #737c73;
-  --palette-katana-gray: #717c7c;
-  --palette-sumi-ink-6: #54546d;
-
-  /* Kanagawa Dragon syntax & accents */
-  --palette-dragon-blue: #658594;
-  --palette-dragon-blue-2: #8ba4b0;
-  --palette-dragon-aqua: #8ea4a2;
-  --palette-dragon-teal: #949fb5;
-  --palette-dragon-violet: #8992a7;
-  --palette-dragon-pink: #a292a3;
   --palette-dragon-green: #87a987;
-  --palette-dragon-green-2: #8a9a7b;
   --palette-dragon-yellow: #c4b28a;
-  --palette-dragon-orange: #b6927b;
-  --palette-dragon-orange-2: #b98d7b;
   --palette-dragon-red: #c4746e;
   --palette-wave-red: #e46876;
-
-  /* Shared Kanagawa selection, diff, diagnostic & VCS colors */
-  --palette-winter-green: #2b3328;
   --palette-winter-red: #43242b;
-  --palette-wave-blue-1: #223249;
   --palette-wave-blue-2: #2d4f67;
-  --palette-wave-aqua-1: #6a9589;
-  --palette-spring-green: #98bb6c;
-  --palette-ronin-yellow: #ff9e3b;
-  --palette-samurai-red: #e82424;
-  --palette-autumn-green: #76946a;
-  --palette-autumn-yellow: #dca561;
-  --palette-autumn-red: #c34043;
+
+  /* Kanagawa Lotus (light) + shared Sumi inks */
+  --palette-sumi-ink-2: #2a2a37;
+  --palette-sumi-ink-3: #363646;
+  --palette-lotus-white-0: #d5cea3;
+  --palette-lotus-white-1: #dcd5ac;
+  --palette-lotus-white-2: #e5ddb0;
+  --palette-lotus-white-3: #f2ecbc;
+  --palette-lotus-white-4: #e7dba0;
+  --palette-lotus-white-5: #e4d794;
+  --palette-lotus-ink-1: #545464;
+  --palette-lotus-ink-2: #43436c;
+  --palette-lotus-gray-2: #716e61;
+  --palette-lotus-violet-1: #a09cac;
+  --palette-lotus-violet-4: #624c83;
+  --palette-lotus-blue-2: #b5cbd2;
+  --palette-lotus-aqua: #597b75;
+  --palette-lotus-red: #c84053;
+  --palette-lotus-red-2: #d7474b;
+  --palette-lotus-red-4: #d9a594;
 }
 
-/*
- * Default theme: Kanagawa Dragon (3-color woodblock triad)
- *   1. Pine green  (dragonGreen)  -> --fg-strong (titles, role headers, strong)
- *   2. Vermilion   (dragonRed)    -> --accent    (links, focus, interactive states)
- *   3. Antique gold(dragonYellow) -> --accent-secondary (section labels, code, seed/index accents)
- */
+/* Dark theme: Kanagawa Dragon (sage pine + vermilion red + sand gold) */
 :root,
 [data-theme="dragon"] {
   --theme-scheme: dark;
 
-  /* Surfaces (Kanagawa ui.bg_m3 .. ui.bg_p2) */
   --bg-deep: var(--palette-dragon-black-0);
   --bg-dim: var(--palette-dragon-black-1);
   --bg-surface: var(--palette-dragon-black-2);
@@ -77,7 +63,6 @@
   --bg-visual: var(--palette-winter-red);
   --bg-search: var(--palette-wave-blue-2);
 
-  /* Foregrounds: green strong emphasis + pure stone-gray neutral ramp */
   --fg-bright: var(--palette-fuji-white);
   --fg-strong: var(--palette-dragon-green);
   --fg: var(--palette-dragon-white);
@@ -85,39 +70,56 @@
   --fg-muted: var(--palette-dragon-gray-2);
   --fg-subtle: var(--palette-dragon-ash);
 
-  /* Borders & dividers */
   --border-subtle: var(--palette-dragon-black-4);
   --border: var(--palette-dragon-black-5);
   --border-strong: var(--palette-dragon-black-6);
 
-  /* Primary interactive accent (vermilion red) + secondary structural accent (antique gold) */
   --accent: var(--palette-dragon-red);
   --accent-hover: var(--palette-wave-red);
   --accent-secondary: var(--palette-dragon-yellow);
   --focus-ring: var(--palette-dragon-red);
 
-  /* Topographic contour strokes (subtle warm ochre tint on major index contours) */
   --topo-minor: var(--bg-elevated);
   --topo-major: color-mix(
     in srgb,
     var(--palette-dragon-black-5) 86%,
     var(--palette-dragon-yellow)
   );
-
-  /* Diagnostics & VCS */
-  --diag-ok: var(--palette-spring-green);
-  --diag-info: var(--palette-dragon-blue);
-  --diag-warning: var(--palette-ronin-yellow);
-  --diag-error: var(--palette-samurai-red);
-  --diag-hint: var(--palette-wave-aqua-1);
 }
 
-/* Optional cool-third variant: swaps antique gold for Hokusai slate blue (dragonBlue2) */
-[data-theme="dragon-blue"] {
-  --accent-secondary: var(--palette-dragon-blue-2);
+/* Light theme: Kanagawa Lotus (cool pine + seal crimson + Edo violet) */
+[data-theme="lotus"] {
+  --theme-scheme: light;
+
+  --bg-deep: var(--palette-lotus-white-3);
+  --bg-dim: var(--palette-lotus-white-3);
+  --bg-surface: var(--palette-lotus-white-3);
+  --bg: color-mix(in srgb, var(--palette-lotus-white-3) 45%, #ffffff);
+  --bg-elevated: #ffffff;
+  --bg-highlight: var(--palette-lotus-white-4);
+  --bg-visual: var(--palette-lotus-red-4);
+  --bg-search: var(--palette-lotus-blue-2);
+
+  --fg-bright: var(--palette-sumi-ink-2);
+  --fg-strong: var(--palette-lotus-aqua);
+  --fg: var(--palette-sumi-ink-3);
+  --fg-dim: var(--palette-lotus-ink-2);
+  --fg-muted: var(--palette-lotus-ink-1);
+  --fg-subtle: var(--palette-lotus-gray-2);
+
+  --border-subtle: var(--palette-lotus-white-2);
+  --border: var(--palette-lotus-white-0);
+  --border-strong: var(--palette-lotus-violet-1);
+
+  --accent: var(--palette-lotus-red);
+  --accent-hover: var(--palette-lotus-red-2);
+  --accent-secondary: var(--palette-lotus-violet-4);
+  --focus-ring: var(--palette-lotus-red);
+
+  --topo-minor: var(--palette-lotus-white-1);
   --topo-major: color-mix(
     in srgb,
-    var(--palette-dragon-black-5) 86%,
-    var(--palette-dragon-blue-2)
+    var(--palette-lotus-white-0) 72%,
+    var(--palette-lotus-violet-4)
   );
 }

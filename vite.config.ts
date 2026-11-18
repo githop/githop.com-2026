@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { cloudflare } from "@cloudflare/vite-plugin";
 import { Marked, type Tokens } from "marked";
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig, transformWithOxc, type Plugin } from "vite";
 import {
   DEFAULT_TOPO,
   TOPO_CLASSES,
@@ -14,10 +14,14 @@ import {
 const LAYER_PLACEHOLDER = "<!--topo:layer-->";
 const SEED_PLACEHOLDER = "<!--topo:seed-->";
 const STYLES_PLACEHOLDER = "<!--styles:home-->";
+const THEME_PLACEHOLDER = "<!--script:theme-->";
 
 /** Stylesheets inlined into index.html, in cascade order. */
 const HOME_STYLES = ["theme.css", "base.css", "home.css"].map((name) =>
   fileURLToPath(new URL(`./src/styles/${name}`, import.meta.url)),
+);
+const THEME_SCRIPT = fileURLToPath(
+  new URL("./src/client/theme.ts", import.meta.url),
 );
 
 function readHomeStyles(): string {
@@ -50,12 +54,22 @@ function homePrerender(): Plugin {
   return {
     name: "githop:home-prerender",
     transformIndexHtml: {
-      // Runs before Vite's HTML pipeline, so the inlined <style> still gets minified.
+      // Runs before Vite's HTML pipeline, so the inlined <style>/<script> still get minified.
       order: "pre",
-      handler(html) {
+      async handler(html) {
         requirePlaceholder(html, LAYER_PLACEHOLDER);
         requirePlaceholder(html, STYLES_PLACEHOLDER);
+        requirePlaceholder(html, THEME_PLACEHOLDER);
+        const { code } = await transformWithOxc(
+          readFileSync(THEME_SCRIPT, "utf8"),
+          THEME_SCRIPT,
+        );
+        const themeBody = code.replace(
+          /\bexport\s+function\s+initTheme\b/,
+          "function initTheme",
+        );
         return html
+          .replace(THEME_PLACEHOLDER, `<script>{${themeBody}\ninitTheme();}</script>`)
           .replace(STYLES_PLACEHOLDER, `<style>\n${readHomeStyles()}</style>`)
           .replace(
             LAYER_PLACEHOLDER,
@@ -66,9 +80,10 @@ function homePrerender(): Plugin {
     },
     configureServer(server) {
       // index.html doesn't import these files, so reload it manually when they change.
-      server.watcher.add(HOME_STYLES);
+      const watched = [...HOME_STYLES, THEME_SCRIPT];
+      server.watcher.add(watched);
       server.watcher.on("change", (file) => {
-        if (HOME_STYLES.includes(file)) server.ws.send({ type: "full-reload" });
+        if (watched.includes(file)) server.ws.send({ type: "full-reload" });
       });
     },
   };

@@ -7,6 +7,7 @@ import {
   title,
 } from "./content/resume.md";
 import { mountResumeCopy } from "./client/resume";
+import { initTheme } from "./client/theme";
 import { prefersMarkdown } from "./lib/negotiate";
 import themeCss from "./styles/theme.css?inline";
 import baseCss from "./styles/base.css?inline";
@@ -19,6 +20,7 @@ const CACHE_CONTROL = import.meta.env.DEV
   : "public, max-age=300, s-maxage=3600";
 
 const RESUME_CSS = themeCss + baseCss + resumeCss;
+const THEME_SCRIPT = `(${initTheme.toString()})();`;
 const COPY_MD_SCRIPT = `(${mountResumeCopy.toString()})();`;
 
 const ResumePage = ({ title, body }: { title: string; body: string }) => (
@@ -29,10 +31,11 @@ const ResumePage = ({ title, body }: { title: string; body: string }) => (
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{`${title} — Résumé`}</title>
-        <meta name="color-scheme" content="dark" />
+        <meta name="color-scheme" content="dark light" />
         <meta name="theme-color" content="#181616" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="alternate" type="text/markdown" href="/resume?format=md" />
+        <script>{raw(THEME_SCRIPT)}</script>
         <style>{raw(RESUME_CSS)}</style>
       </head>
       <body class="resume">
@@ -54,6 +57,42 @@ const ResumePage = ({ title, body }: { title: string; body: string }) => (
           />
           <article>{raw(body)}</article>
         </div>
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Toggle color theme"
+          data-theme-toggle
+        >
+          <svg
+            class="theme-to-light"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <svg
+            class="theme-to-dark"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
         <script>{raw(COPY_MD_SCRIPT)}</script>
       </body>
     </html>

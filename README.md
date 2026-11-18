@@ -25,7 +25,7 @@ npm run deploy
 
 ## Styles
 
-- `src/styles/theme.css` – two-tier theme architecture (`--palette-*` primitives mapped to semantic tokens); ships Kanagawa Dragon (`[data-theme="dragon"]`) as the default theme.
+- `src/styles/theme.css` – two-tier theme architecture (`--palette-*` primitives mapped to semantic tokens) for Kanagawa Dragon (`[data-theme="dragon"]`, dark) and Lotus (`[data-theme="lotus"]`, light).
 - `src/styles/base.css` – shared typography tokens and base element styles.
 - `src/styles/home.css` – landing page, scoped under `.home`; inlined into `index.html`. The build fails if it's missing any `TOPO_CLASSES` selector or `--topo-fade`.
 - `src/styles/resume.css` – résumé page and print styles, scoped under `.resume`; inlined by the Worker via `?inline`.
